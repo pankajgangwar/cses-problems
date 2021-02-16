@@ -10,7 +10,7 @@
 using namespace std;
 
 //Problem : https://cses.fi/problemset/task/1639
-//Solution: https://cses.fi/problemset/result/1625769/ 
+//Solution: https://cses.fi/problemset/result/1650083/ 
 
     int minOfEditOperations(int a, int b, int c){
         return min(min(a,b),c);
