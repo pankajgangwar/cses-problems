@@ -14,13 +14,12 @@ using namespace std;
 
 int solve(vector<vector<int>>& grid, int n) {
     int dp[n + 1][n + 1];
-    /*for (int i = 0; i <= n; i++) {
+    for (int i = 0; i <= n; i++) {
         dp[i][0] = 0;
     }
     for (int j = 0; j <= n; j++) {
         dp[0][j] = 0;
-    }*/
-    //memset(dp, 0, sizeof dp);
+    }
     dp[0][1] =  1;
     int mod = 1e9 + 7;
     for (int i = 1; i <= n; i++) {
@@ -45,7 +44,7 @@ int main() {
         string row;
         cin >> row;
         vector<int> curr_row;
-        for (int j = 0; j < n; j++){
+        for (int j = 0; j < n; j++) {
             curr_row.push_back(row.at(j) == '.' ? 1 : -1);
         }
         grid.push_back(curr_row);
