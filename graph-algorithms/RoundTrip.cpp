@@ -14,6 +14,8 @@ using namespace std;
 
 //Problem : https://cses.fi/problemset/task/1669
 //Sol : https://cses.fi/problemset/result/1724910
+//https://cp-algorithms.com/graph/finding-cycle.html
+
 vector<int> visited;
 vector<int> parent;
 unordered_map<int, vector<int>> graph;
