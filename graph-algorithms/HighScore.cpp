@@ -43,7 +43,6 @@ int bellmanFord(int N) {
                 dist[v] = max(dist[v], NInf);
                 /*
                 Negative cycle leads to relaxation even after n - 1 iterations
-                Relaxation: Weight lose
                 */
                 if (dist[u] + w < dist[v]) { // This confirms presence of negative cycle
                     dist[v] = NInf; // Reset to -infinity
