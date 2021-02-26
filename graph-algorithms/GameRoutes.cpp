@@ -15,14 +15,13 @@ const int mod = 1e9 + 7;
 using namespace std;
 
 
-//Problem : https://cses.fi/problemset/task/1680
-//Sol : https://cses.fi/problemset/result/1761183
+//Problem : https://cses.fi/problemset/task/1681
+//Sol : https://cses.fi/problemset/result/1761418
 
 vector<int> graph[MAX_NODES];
 vector<int> parent[MAX_NODES];
 vector<int> indegrees;
-vector<int> dist;
-vector<int> track_path;
+vector<int> dp;
 int min_value = INT_MIN;
 
 /*
@@ -30,7 +29,7 @@ Uses Kahn's algorithm
 */
 void topological_sort(int n) {
     queue<int> queue;
-    dist[1] = 1;
+    dp[1] = 1;
     for (int i = 1; i <= n; i++) {
         if (indegrees[i] == 0) {
             queue.push(i);
@@ -44,17 +43,9 @@ void topological_sort(int n) {
                 queue.push(adj);
             }
         }
-        int max_curr = min_value;
-        int max_node = -1;
         for (int prev : parent[curr]) {
-            if(max_curr < dist[prev] + 1){
-                max_curr = dist[prev] + 1;
-                max_node = prev;
-            }
+            dp[curr] = (dp[prev] + dp[curr]) % mod;
         }
-        if(curr == 1) continue;
-        dist[curr] = max_curr;
-        track_path[curr] = max_node;
     }
 }
 
@@ -68,8 +59,7 @@ int main() {
     int n, m;
     cin >> n >> m;
     indegrees.resize(n + 1, 0);
-    dist.resize(n + 1, min_value);
-    track_path.resize(n + 1, -1);
+    dp.resize(n + 1, 0);
 
     for (int i = 0; i < m; i++) {
         int a, b;
@@ -79,19 +69,6 @@ int main() {
         parent[b].push_back(a);
     }
     topological_sort(n);
-    if(dist[n] < 0){
-        cout << "IMPOSSIBLE" << endl;
-    }else {
-        vector<int> ans;
-        for (int v = n; v != -1 && dist[v] >= 0; v = track_path[v]) {
-            ans.push_back(v);
-        }
-        reverse(ans.begin(), ans.end());
-        cout << dist[n] << '\n';
-        for (auto a : ans) {
-            cout << a << ' ';
-        }
-        cout << endl;
-    }
+    cout << dp[n] << endl;
     return 0;
 }

@@ -13,23 +13,32 @@ vector<bool> visited(MAX_NODES, false);
 
 //Problem : https://cses.fi/problemset/task/1195
 //Sol : https://cses.fi/problemset/result/
-struct triplet {
-    int src, prev, weight;
-};
-struct compare_triplet {
-    bool operator()(triplet const& t1, triplet const& t2) {
+struct Item {
+    int src, cost;
+    bool discount;
+    Item(int _src, int _cost, bool _discount){
+        src = _src;
+        cost = _cost;
+        discount = _discount;
+    }
+
+    inline const bool operator()(const Item& other) const {
+        if()
         return t1.weight > t2.weight;
     }
 };
+struct compare_Item {
+    
+};
 int dijkstra(int n) {
-    priority_queue<triplet, vector<triplet>, compare_triplet > minpq; // min priority queue
+    priority_queue<Item, vector<Item>, compare_Item > minpq; // min priority queue
     minpq.push( {1, -1, 0} );
     int maxw = NInf;
     int min_cost = 0;
     vector<pair> parent(n + 1);
     parent[1] = {0, 0};
     while (!minpq.empty()) {
-        triplet p = minpq.top(); minpq.pop();
+        Item p = minpq.top(); minpq.pop();
         int src = p.src;
         int src_w = p.weight;
         int prev = p.prev;
