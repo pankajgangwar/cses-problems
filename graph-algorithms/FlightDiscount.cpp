@@ -16,19 +16,15 @@ vector<bool> visited(MAX_NODES, false);
 struct Item {
     int src, cost;
     bool discount;
-    Item(int _src, int _cost, bool _discount){
+    Item(int _src, int _cost, bool _discount) {
         src = _src;
         cost = _cost;
         discount = _discount;
     }
 
     inline const bool operator()(const Item& other) const {
-        if()
-        return t1.weight > t2.weight;
+        return t1.cost > t2.cost;
     }
-};
-struct compare_Item {
-    
 };
 int dijkstra(int n) {
     priority_queue<Item, vector<Item>, compare_Item > minpq; // min priority queue

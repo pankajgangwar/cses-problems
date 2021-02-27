@@ -47,14 +47,14 @@ void topological_sort(int n) {
         int max_curr = min_value;
         int max_node = -1;
         for (int prev : parent[curr]) {
-            if(max_curr < dist[prev] + 1){
+            if (max_curr < dist[prev] + 1) {
                 max_curr = dist[prev] + 1;
                 max_node = prev;
             }
         }
-        if(curr == 1) continue;
+        if (curr == 1) continue;
         dist[curr] = max_curr;
-        track_path[curr] = max_node;
+        track_path[curr] = max_node;// max length to reach this node
     }
 }
 
@@ -62,7 +62,7 @@ void topological_sort(int n) {
 int main() {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdin);
+    freopen("output.txt", "w", stdout);
 #endif
     fast_io;
     int n, m;
@@ -79,9 +79,9 @@ int main() {
         parent[b].push_back(a);
     }
     topological_sort(n);
-    if(dist[n] < 0){
+    if (dist[n] < 0) {
         cout << "IMPOSSIBLE" << endl;
-    }else {
+    } else {
         vector<int> ans;
         for (int v = n; v != -1 && dist[v] >= 0; v = track_path[v]) {
             ans.push_back(v);

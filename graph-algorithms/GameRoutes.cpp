@@ -44,7 +44,7 @@ void topological_sort(int n) {
             }
         }
         for (int prev : parent[curr]) {
-            dp[curr] = (dp[prev] + dp[curr]) % mod;
+            dp[curr] = (dp[prev] + dp[curr]) % mod; // Ways to reach prev
         }
     }
 }
@@ -53,7 +53,7 @@ void topological_sort(int n) {
 int main() {
 #ifndef ONLINE_JUDGE
     freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdin);
+    freopen("output.txt", "w", stdout);
 #endif
     fast_io;
     int n, m;
